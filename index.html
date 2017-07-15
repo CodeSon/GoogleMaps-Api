@@ -27,6 +27,15 @@ function initMap(){
 
 //new map
   var map = new google.maps.Map(document.getElementById('map'), options);
+
+  //Listen for click on map
+  google.maps.event.addListener(map, 'click',
+  function(event){
+
+  //Add marker
+    addMarker({coords:event.latLng});
+
+  });
 /*
   //Add marker
   var marker = new google.maps.Marker({
@@ -44,14 +53,25 @@ function initMap(){
 
     */
 
-    addMarker({coords:{lat:6.1050,lng:0.0140},
-      iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    //Array of markers
+    var markers=[
+      {coords:{lat:6.1050,lng:0.0140},
+        iconImage:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
 
-      content:'<h1>Somanya</h1>'
-    });
-    addMarker({coords:{lat:5.6333,lng:0.0167},
-    content:'<h1>Tema Port</h1>'
-    });
+        content:'<h1>Somanya</h1>'
+      },
+      {coords:{lat:5.6333,lng:0.0167},
+      content:'<h1>Tema Port</h1>'
+      }
+
+    ];
+
+    //Loop through markers
+    for(var i=0;i<markers.length;i++){
+// Add marker
+      addMarker(markers[i]);
+
+    }
 
     // Add Marker function
 
